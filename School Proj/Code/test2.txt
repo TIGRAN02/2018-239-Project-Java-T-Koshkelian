@@ -1,0 +1,10 @@
+Square if given a, h:
+1 2
+Bisectrix without half-perimetr:
+3 1
+Half-perimeter:
+4 1
+Outer radius given a, b, c, S:
+6 1
+Square if given a, b, alpha:
+1 1
