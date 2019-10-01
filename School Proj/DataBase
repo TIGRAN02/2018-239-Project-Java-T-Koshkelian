@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS formula;
+DROP TABLE IF EXISTS required;
+
+CREATE TABLE required
+(
+    num integer PRIMARY KEY,
+    name text
+);
+CREATE TABLE formula (
+    num integer REFERENCES required(num),
+    numb integer,
+    value text
+);
+ 
+INSERT INTO required (num, name) VALUES (1, 'S=');
+INSERT INTO required (num, name) VALUES (2, 'm=');
+INSERT INTO required (num, name) VALUES (3, 'l=');
+INSERT INTO required (num, name) VALUES (4, 'p=');
+INSERT INTO required (num, name) VALUES (5, 'r=');
+INSERT INTO required (num, name) VALUES (6, 'R=');
+INSERT INTO formula (num, numb, value) VALUES (1, 1, '0.5*a*b*sin(alpha)');
+INSERT INTO formula (num, numb, value) VALUES (1, 2, '0.5*a*h');
+INSERT INTO formula (num, numb, value) VALUES (1, 3, 'sqrt(p*(p-a)*(p-b)*(p-c))');
+INSERT INTO formula (num, numb, value) VALUES (2, 1, '0.5*sqrt(2*b^2+2*c^2-a^2)');
+INSERT INTO formula (num, numb, value) VALUES (3, 1, 'sqrt(a*b-a1*b1)');
+INSERT INTO formula (num, numb, value) VALUES (3, 2, '2*sqrt(a*b*p*(p-c))/(a+b)');
+INSERT INTO formula (num, numb, value) VALUES (4, 1, '0.5*(a+b+c)');
+INSERT INTO formula (num, numb, value) VALUES (5, 1, 'S/p');
+INSERT INTO formula (num, numb, value) VALUES (6, 1, 'a*b*c/(4*S)');
+SELECT required.name, formula.value FROM required, formula WHERE (required.num = formula.num) AND (required.num = 1) AND (formula.numb = 2);

@@ -1,0 +1,72 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Reader extends JFrame {
+    private JButton b1, b2;
+    private JLabel l1, l2;
+    private JTextField f1;
+    private boolean t;
+    eHandler handler = new eHandler();
+    public Reader (String s) {
+        super("Geometry");
+        setLayout(new FlowLayout());
+        b1 = new JButton("Очистить");
+        b2 = new JButton("Проверить");
+        l1 = new JLabel(s + "\n");
+        l2 = new JLabel("");
+        f1 = new JTextField(15);
+        t = false;
+        add(b1);
+        add(b2);
+        add(l1);
+        add(f1);
+        add(l2);
+        b1.addActionListener(handler);
+        b2.addActionListener(handler);
+    }
+    public Reader (String s, int a) {
+        super("Geometry");
+        setLayout(new FlowLayout());
+        l1 = new JLabel(s + "\n");
+        add(l1);
+        if(a == 1) {
+            b2 = new JButton("Выбрать");
+            f1 = new JTextField(6);
+            t = false;
+            add(f1);
+            add(b2);
+            b2.addActionListener(handler);
+        }
+    }
+    public String getF1() {
+        return f1.getText();
+    }
+    public boolean getT() {
+        return t;
+    }
+    public void setL2(String st) {
+        l2.setText(st);
+    }
+    public void setL1(String st) {
+        l1.setText(st);
+    }
+    public void setT(boolean t) {
+        this.t = t;
+    }
+    public void setF1(String st) {
+        f1.setText(st);
+    }
+    public class eHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == b1) {
+                f1.setText(null);
+            }
+            if(e.getSource() == b2) {
+                t = true;
+            }
+        }
+    }
+}
